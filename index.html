@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+        <!--=============== BOXICONS ===============-->
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        
+        <!--=============== SWIPER CSS ===============-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <title>Dashboard</title>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script>
+            // Fetch drone stats
+            fetch('https://raw.githubusercontent.com/akm1311/AgricultureDashboard/main/drone.json')
+              .then(response => response.json())
+              .then(data => {
+                document.getElementById('battery-percentage').textContent = data.battery_percentage;
+                document.getElementById('is-damaged').textContent = data.is_damaged ? 'Yes' : 'No';
+                document.getElementById('needs-calibration').textContent = data.needs_calibration ? 'Yes' : 'No';
+                document.getElementById('service-required').textContent = data.service_required ? 'Yes' : 'No';
+              })
+              .catch(error => console.error('Error fetching drone stats:', error));
+        </script>          
+    </head>
+    <body>
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">
+                    Dashboard <i class='bx bxs-home-alt-2'></i>
+                </a>
+
+                <div class="nav__menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link">
+                                <i class='bx bx-home-alt-2' ></i>
+                                <span>Drone</span>
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#popular" class="nav__link">
+                                <i class='bx bx-building-house' ></i>
+                                <span>Images and Videos</span>
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#value" class="nav__link">
+                                <i class='bx bx-award' ></i>
+                                <span>Temperature and Humidity</span>
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#contact" class="nav__link">
+                                <span>NDVI</span>
+                                <i class='bx bx-phone' ></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Theme change button -->
+                <i class='bx bx-moon change-theme' id="theme-button"></i>
+
+                <a href="#" class="nav__button button">Subscribe</a>
+            </nav>
+        </header>
+
+        <!--==================== MAIN ====================-->
+        <main class="main">
+            <!--==================== DRONE ====================-->
+            <section class="home section" id="home">
+                <div class="home__container container grid">
+                    <div class="home__data">
+                        <h1 class="home__title">
+                            Check <br> Insights about <br>  Drone 
+                        </h1>
+                        <p class="home__description">
+                            Here is the Basic Information About your drone
+                        </p>
+    
+                        <div id="drone-stats">
+                            <img class="home__title" id="drone-image" height="250" src="https://github.com/akm1311/AgricultureDashboard/blob/main/drone.jpg?raw=true" alt="Drone Image">
+                            <div>
+                              <h2 class="home__title">Drone Stats</h2>
+                              <p >Battery Percentage: <span id="battery-percentage"></span>%</p>
+                              <p >Is Damaged: <span id="is-damaged"></span></p>
+                              <p >Needs Calibration: <span id="needs-calibration"></span></p>
+                              <p >Service Required: <span id="service-required"></span></p>
+                            </div>
+                          </div>
+    
+                    </div>
+    
+                    <div class="home__images">
+                        <div class="home__orbe"></div>
+    
+                        <div style="fill: none;" class="home__img">
+                            <img src="assets/img/image3.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!--==================== IMAGES AND VIDEOS ====================-->
+            <section class="section" id="popular">
+                <div class="container">
+                    <span class="section__subtitle">Visual Data</span>
+                    <h2 class="section__title">
+                        Images and Videos<span>.</span>
+                    </h2>
+                    <span class="section__subtitle">Images</span>
+                    <div class="popular__container grid swiper">
+                        <div class="swiper-wrapper">
+                                <article class="popular__card swiper-slide">
+                                    <img src="assets/img/image1.jpg" alt="" class="popular__img">
+                                </article>
+                            <article class="popular__card swiper-slide">
+                                <img src="assets/img/image2.jpg" alt="" class="popular__img">
+                            </article>
+    
+                            <article class="popular__card swiper-slide">
+                                <img src="assets/img/image6.jpg" alt="" class="popular__img">
+                            </article>
+    
+                            <article class="popular__card swiper-slide">
+                                <img src="assets/img/image7.jpg" alt="" class="popular__img">
+    
+                            </article>
+                            <article class="popular__card swiper-slide">
+                                <img src="assets/img/image8.jpg" alt="" class="popular__img">
+                            </article>
+                            
+                        </div>
+
+                        <div class="swiper-button-next">
+                            <i class='bx bx-chevron-right' ></i>
+                        </div>
+                        <div class="swiper-button-prev">
+                            <i class='bx bx-chevron-left'></i>
+                        </div>
+                    </div>
+
+                    <span class="section__subtitle">Videos</span>
+                    <div class="popular__container grid swiper">
+                        
+                        <div class="swiper-wrapper">
+                            <video  class="popular__card swiper-slide" controls>
+                                <source src="assets/video/Cannabis Farm Drone Shot Loop.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            <video  class="popular__card swiper-slide" controls>
+                                <source src="assets/video/Drone Flight over a Wheat Field at Sunrise [4K] _ Free Drone Footage.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            <video  class="popular__card swiper-slide" controls>
+                                <source src="assets/video/Free Stock Footage - California Agriculture Cornfield Aerial Drone Flyover 4k.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            <video  class="popular__card swiper-slide" controls>
+                                <source src="assets/video/Spectacular drone shots of Iowa corn fields.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            
+                            <video  class="popular__card swiper-slide" controls>
+                                <source src="assets/video/Tractor Tracks in a Wheat Field [4K] _ Free Drone Footage (1).mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            
+                        </div>
+
+                        <div class="swiper-button-next">
+                            <i class='bx bx-chevron-right' ></i>
+                        </div>
+                        <div class="swiper-button-prev">
+                            <i class='bx bx-chevron-left'></i>
+                        </div>
+                    </div>
+                
+                </div>
+            </section>
+
+            <!--==================== TEMPERATURE AND HUMIDITY ====================-->
+            <section class="section" id="value">
+                <div class="container">
+                    <h2 class="section__title">
+                    Temperature and Humidity<span>.</span>
+                    </h2>
+                </div>
+                <!-- Temperature and Humidity Chart -->
+                <div class="container" id="temperature-humidity-chart"></div>
+            </section>
+            <!--==================== NDVI ====================-->
+            <section class="value section" id="contact">
+                <div class="container">
+                    <h2 class="section__title">
+                    NDVI<span>.</span>
+                    </h2>
+                </div>
+                <!-- NDVI Chart -->
+                <div class="container" id="ndvi-chart"></div>
+            </section>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div>
+                    <a href="" class="footer__logo">
+                        Agriculture Dashboard <i class='bx bxs-home-alt-2'></i>
+                    </a>
+                    <p class="footer__description">
+                        To revolutionize agriculture through cutting-edge drone technology,   <br> 
+                        enhancing crop yields, optimizing resource usage, and creating  
+                        <br>sustainable farming practices globally.
+                    </p>
+                </div>
+
+                <div class="footer__content">
+                    <div>
+                        <h3 class="footer__title">
+                            About
+                        </h3>
+
+                        <ul class="footer__links">
+                            <li>
+                                <a href="#" class="footer__link">About Us</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer__link">Features</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer__link">News & Blog</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="footer__title">
+                            Company
+                        </h3>
+
+                        <ul class="footer__links">
+                            <li>
+                                <a href="#" class="footer__link">How We Work?</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer__link">Capital</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer__link">Security</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer__title">
+                            Support
+                        </h3>
+
+                        <ul class="footer__links">
+                            <li>
+                                <a href="#" class="footer__link">FAQs</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer__link">Support center</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer__link">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="footer__title">
+                            Follow us
+                        </h3>
+
+                        <ul class="footer__social">
+                            <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                                <i class='bx bxl-facebook-circle' ></i>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                                <i class='bx bxl-instagram-alt' ></i>
+                            </a>
+                            <a href="https://www.pinterest.com/" target="_blank" class="footer__social-link">
+                                <i class='bx bxl-pinterest' ></i>
+                            </a>    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__info container">
+                <span class="footer__copy">
+                    &#169; Aman Kumar Singh. All rigths reserved
+                </span>
+
+                <div class="footer__privacy">
+                    <a href="#">Terms & Agreements</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </footer>
+
+
+        <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class='bx bx-chevrons-up'></i>
+        </a>
+
+        <!--=============== SCROLLREVEAL ===============-->
+        <script src="assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== SWIPER JS ===============-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+        <script>
+            var data = {
+                'Date': ['2022-01-01', '2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05', '2022-01-06', '2022-01-07', '2022-01-08', '2022-01-09', '2022-01-10'],
+                'Temperature': [20, 21, 22, 23, 22, 24, 25, 24, 23, 22],
+                'Humidity': [50, 48, 47, 45, 46, 44, 43, 45, 47, 48],
+                'NDVI': [0.8, 0.75, 0.72, 0.65, 0.7, 0.68, 0.73, 0.75, 0.78, 0.8]
+            };
+            
+            var temperatureHumidityData = [
+               {
+                 x: data['Date'],
+                 y: data['Temperature'],
+                 mode: 'lines',
+                 name: 'Temperature'
+               },
+               {
+                 x: data['Date'],
+                 y: data['Humidity'],
+                 mode: 'lines',
+                 name: 'Humidity'
+               }
+            ];
+           
+            var temperatureHumidityLayout = {
+               title: 'Temperature and Humidity',
+               xaxis: {title: 'Date'},
+               yaxis: {title: 'Value'}
+            };
+         
+            Plotly.newPlot('temperature-humidity-chart', temperatureHumidityData, temperatureHumidityLayout);
+
+                    
+            // NDVI Chart
+            var ndviData = [
+              {
+                x: data['Date'],
+                y: data['NDVI'],
+                mode: 'lines',
+                name: 'NDVI',
+                line: {color: 'green'}
+              }
+            ];
+            
+            var ndviLayout = {
+              title: 'NDVI',
+              xaxis: {title: 'Date'},
+              yaxis: {title: 'NDVI Value'}
+            };
+        
+            Plotly.newPlot('ndvi-chart', ndviData, ndviLayout);
+        </script>
+    </body>
+</html>

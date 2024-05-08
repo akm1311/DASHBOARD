@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agricultural Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('back.png');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #38d822;
+      color: #000000;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Welcome to the Agricultural Dashboard</h1>
+  <button onclick="openDashboard()">Launch Dashboard</button>
+</div>
+
+<script>
+  function openDashboard() {
+    window.location.href = 'dashboard.html';
+  }
+</script>
+
+</body>
+</html>

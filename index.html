@@ -27,6 +27,7 @@
                 document.getElementById('is-damaged').textContent = data.is_damaged ? 'Yes' : 'No';
                 document.getElementById('needs-calibration').textContent = data.needs_calibration ? 'Yes' : 'No';
                 document.getElementById('service-required').textContent = data.service_required ? 'Yes' : 'No';
+                document.getElementById('tof').textContent = data.timeofflight;
               })
               .catch(error => console.error('Error fetching drone stats:', error));
         </script>          
@@ -96,6 +97,7 @@
                               <p >Is Damaged: <span id="is-damaged"></span></p>
                               <p >Needs Calibration: <span id="needs-calibration"></span></p>
                               <p >Service Required: <span id="service-required"></span></p>
+                              <p >Time Of Flight: <span id="tof"></span></p>
                             </div>
                           </div>
     

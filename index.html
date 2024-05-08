@@ -333,55 +333,54 @@
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>
         <script>
-            var data = {
-                'Date': ['2022-01-01', '2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05', '2022-01-06', '2022-01-07', '2022-01-08', '2022-01-09', '2022-01-10'],
-                'Temperature': [20, 21, 22, 23, 22, 24, 25, 24, 23, 22],
-                'Humidity': [50, 48, 47, 45, 46, 44, 43, 45, 47, 48],
-                'NDVI': [0.8, 0.75, 0.72, 0.65, 0.7, 0.68, 0.73, 0.75, 0.78, 0.8]
-            };
-            
-            var temperatureHumidityData = [
-               {
-                 x: data['Date'],
-                 y: data['Temperature'],
-                 mode: 'lines',
-                 name: 'Temperature'
-               },
-               {
-                 x: data['Date'],
-                 y: data['Humidity'],
-                 mode: 'lines',
-                 name: 'Humidity'
-               }
-            ];
-           
-            var temperatureHumidityLayout = {
-               title: 'Temperature and Humidity',
-               xaxis: {title: 'Date'},
-               yaxis: {title: 'Value'}
-            };
-         
-            Plotly.newPlot('temperature-humidity-chart', temperatureHumidityData, temperatureHumidityLayout);
-
-                    
-            // NDVI Chart
-            var ndviData = [
-              {
-                x: data['Date'],
-                y: data['NDVI'],
-                mode: 'lines',
-                name: 'NDVI',
-                line: {color: 'green'}
-              }
-            ];
-            
-            var ndviLayout = {
-              title: 'NDVI',
-              xaxis: {title: 'Date'},
-              yaxis: {title: 'NDVI Value'}
-            };
+            // Fetch data from GitHub
+            fetch('https://raw.githubusercontent.com/akm1311/AgricultureDashboard/main/data.json')
+              .then(response => response.json())
+              .then(data => {
+                // Temperature and Humidity Chart
+                var temperatureHumidityData = [
+                  {
+                    x: data['Date'],
+                    y: data['Temperature'],
+                    mode: 'lines',
+                    name: 'Temperature'
+                  },
+                  {
+                    x: data['Date'],
+                    y: data['Humidity'],
+                    mode: 'lines',
+                    name: 'Humidity'
+                  }
+                ];
         
-            Plotly.newPlot('ndvi-chart', ndviData, ndviLayout);
-        </script>
+                var temperatureHumidityLayout = {
+                  title: 'Temperature and Humidity',
+                  xaxis: {title: 'Date'},
+                  yaxis: {title: 'Value'}
+                };
+        
+                Plotly.newPlot('temperature-humidity-chart', temperatureHumidityData, temperatureHumidityLayout);
+        
+                // NDVI Chart
+                var ndviData = [
+                  {
+                    x: data['Date'],
+                    y: data['NDVI'],
+                    mode: 'lines',
+                    name: 'NDVI',
+                    line: {color: 'green'}
+                  }
+                ];
+        
+                var ndviLayout = {
+                  title: 'NDVI',
+                  xaxis: {title: 'Date'},
+                  yaxis: {title: 'NDVI Value'}
+                };
+        
+                Plotly.newPlot('ndvi-chart', ndviData, ndviLayout);
+              })
+              .catch(error => console.error('Error fetching data:', error));
+          </script>
     </body>
 </html>
